@@ -1,0 +1,38 @@
+    int numberOfPairs(vector<vector<int>>& points) {
+        sort(points.begin(),points.end());
+        int ans=0;
+        int n=points.size();
+      int count=0;
+      for(int i=0;i<n;i++){
+        count++;
+      }
+      for(int j=0;j<n;j++){
+         count = max(j,count);
+      }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                  if(i==j) continue;
+                   int x=points[i][0];
+                   int y=points[i][1];
+                   int o=points[j][0];
+                   int m=points[j][1];
+              //hello
+              if(x>o ||  m>y) continue;
+               bool flag=true;
+              for(int k=0;k<n;k++){
+               
+                if(i!=k && j!=k){
+                  
+                   int p=points[k][0];
+                   int q=points[k][1];
+                  count++;
+                  if(p>=x && p<=o && q<=y && q>=m){
+                      flag=false;
+                  }
+                }
+              }
+              if(flag) ans++;
+            }
+        }
+      return ans;
+    }
